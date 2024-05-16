@@ -12,9 +12,11 @@ interface RepoUploadProps {
   clusterData: any; 
   setClusterData: (value: any) => void; 
   hoveredMicroservice: (value: any) => void; 
+  setIsZoomedIn: (value: any) => void; 
+  isZoomedIn: (value: any) => void; 
 }
 
-function RepoUpload({ popupShowing, setPopupShowing, setClickedNodeData, clusterData, setClusterData, hoveredMicroservice} : RepoUploadProps) {
+function RepoUpload({ popupShowing, setPopupShowing, setClickedNodeData, clusterData, setClusterData, hoveredMicroservice, setIsZoomedIn, isZoomedIn} : RepoUploadProps) {
   const [hierarchyData, setHierarchyData] = useState(null);
 
   const [isAnalyzing, setIsAnalyzing] = useState(false);
@@ -113,7 +115,7 @@ function RepoUpload({ popupShowing, setPopupShowing, setClickedNodeData, cluster
                 {/* <button type="submit" id="submit-btn" disabled={isFileLoading || isAnalyzing}>Submit</button> */}
                 {analyzeButtonShowing && !isAnalyzing && (
                     <div className='btn-container-main-page'>
-                      <button type="submit" className='btn btn-secondary btn-pulse'>Analyze</button>
+                      <button type="submit" id='btn-pulse'>Analyze</button>
                     </div>
                   )}
                 {(isFileLoading || isAnalyzing) && <FileLoader/>}
@@ -123,7 +125,7 @@ function RepoUpload({ popupShowing, setPopupShowing, setClickedNodeData, cluster
           
         ) : (
           <div className='D3-container'>
-            <D3 hierarchyData={hierarchyData} popupShowing={popupShowing} setPopupShowing={setPopupShowing} setClickedNodeData={setClickedNodeData} hoveredMicroservice={hoveredMicroservice} />
+            <D3 hierarchyData={hierarchyData} popupShowing={popupShowing} setPopupShowing={setPopupShowing} setClickedNodeData={setClickedNodeData} hoveredMicroservice={hoveredMicroservice} setIsZoomedIn={setIsZoomedIn} isZoomedIn={isZoomedIn} />
           </div>
         )}
       </div>
